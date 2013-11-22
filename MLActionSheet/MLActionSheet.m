@@ -11,7 +11,8 @@
 #define kActionButtonHeight 43
 #define kAnimateDuration .30f
 
-#define kOpacity 0.96
+#define kMainOpacity 0.96f
+#define kBackOpacity 0.4f
 #define kBorderColor [UIColor colorWithWhite:0.674 alpha:1.000].CGColor
 #define kViewBackgroundColor [UIColor colorWithWhite:0.936 alpha:1.000]
 #define kCommonTextColor [UIColor colorWithRed:0.092 green:0.253 blue:0.537 alpha:1.000]
@@ -180,7 +181,7 @@ const UIWindowLevel UIWindowLevelMLActionSheet = 1999.0;
     [UIView animateWithDuration:kAnimateDuration
                      animations:^{
                          self.mainView.frame = frame; //跑到最底
-                         self.backgroundView.layer.opacity = 0.3;
+                         self.backgroundView.layer.opacity = kBackOpacity;
                      }
      completion:^(BOOL finished) {
          if (self.delegate&&[self.delegate respondsToSelector:@selector(didPresentActionSheet:)]) {
@@ -439,7 +440,7 @@ const UIWindowLevel UIWindowLevelMLActionSheet = 1999.0;
         UIView *view = [[UIView alloc]init];
         view.clipsToBounds = YES;
         view.backgroundColor = kViewBackgroundColor;
-        view.layer.opacity = kOpacity;
+        view.layer.opacity = kMainOpacity;
         view.layer.borderColor = kBorderColor;
         view.layer.borderWidth = 0.5f;
         [self addSubview:view];
@@ -453,7 +454,7 @@ const UIWindowLevel UIWindowLevelMLActionSheet = 1999.0;
     if (!_backgroundView) {
         //没有的话就初始化
         UIView *view = [[UIView alloc]init];
-        view.layer.opacity = 0.3;
+        view.layer.opacity = kBackOpacity;
         view.backgroundColor = [UIColor blackColor];
         view.autoresizingMask = UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
         

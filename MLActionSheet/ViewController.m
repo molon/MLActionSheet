@@ -38,9 +38,8 @@
     NSLog(@"%d",sheet.visible);
 }
 - (IBAction)show2:(id)sender {
-    MLActionSheet *sheet = [[MLActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"" destructiveButtonTitle:@"删除" otherButtonTitles:@"分享照片",@"复制共享 URL",@"以电子邮件发送图片", nil];
+    MLActionSheet *sheet = [[MLActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"删除" otherButtonTitles:@"分享照片",@"复制共享 URL",@"以电子邮件发送图片", nil];
     [sheet showInView:self.view];
-    NSLog(@"%d",sheet.visible);
 }
 - (IBAction)show3:(id)sender {
     MLActionSheet *sheet = [[MLActionSheet alloc]initWithTitle:@"你要干什么?你要干什么?你要干什么?你要干什么?你要干什么?" delegate:self cancelButtonTitle:nil destructiveButtonTitle:@"确定" otherButtonTitles:nil, nil];
