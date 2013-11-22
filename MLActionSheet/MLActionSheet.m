@@ -394,7 +394,7 @@ const UIWindowLevel UIWindowLevelMLActionSheet = 1999.0;
 
 - (void)setTitle:(NSString *)title
 {
-    if ([title isEqualToString:_title]) {
+    if ([title isEqualToString:_title]||title.length<=0) {
         return;
     }
     _title = title;

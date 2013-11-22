@@ -55,7 +55,7 @@
     [sheet showInView:self.view];
 }
 - (IBAction)show5:(id)sender {
-    MLActionSheet *sheet = [[MLActionSheet alloc]initWithTitle:@"你要干什么?" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:nil, nil];
+    MLActionSheet *sheet = [[MLActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"用户相册", nil];
     [sheet showInView:self.view];
 }
 
