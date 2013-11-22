@@ -18,8 +18,7 @@
 
 #define kCommonFont [UIFont boldSystemFontOfSize:17]
 
-const UIWindowLevel UIWindowLevelMLActionSheet = 1999.0;  // don't overlap system's alert
-const UIWindowLevel UIWindowLevelMLActionSheetBackground = 1998.0; // below the alert window
+const UIWindowLevel UIWindowLevelMLActionSheet = 1999.0;
 
 #pragma mark - MLActionSheet interface
 @interface MLActionSheet()
@@ -69,6 +68,8 @@ const UIWindowLevel UIWindowLevelMLActionSheetBackground = 1998.0; // below the 
 }
 
 @end
+
+#pragma mark - MLActionSheet implementation
 
 @implementation MLActionSheet
 
