@@ -34,7 +34,7 @@ typedef NS_OPTIONS(NSUInteger, MLActionButtonStyleMask) {
 
 //常用的
 - (id)initWithTitle:(NSString *)title delegate:(id<MLActionSheetDelegate>)delegate cancelButtonTitle:(NSString *)cancelButtonTitle destructiveButtonTitle:(NSString *)destructiveButtonTitle otherButtonTitles:(NSString *)otherButtonTitles, ... NS_REQUIRES_NIL_TERMINATION;
-//其实这个View没鸡巴用,顶多是跟随获得一些样式啥的，暂时没这些功能
+//其实这个View没鸡巴用,默认新开window显示
 - (void)showInView:(UIView *)view;
 
 
