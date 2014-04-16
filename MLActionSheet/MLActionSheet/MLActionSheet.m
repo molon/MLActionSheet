@@ -8,6 +8,7 @@
 
 #import "MLActionSheet.h"
 
+#define kButtonTagOffset 100
 #define kActionButtonHeight 43
 #define kAnimateDuration .30f
 
@@ -18,8 +19,6 @@
 #define kCommonTextColor [UIColor colorWithRed:0.092 green:0.253 blue:0.537 alpha:1.000]
 
 #define kCommonFont [UIFont boldSystemFontOfSize:17]
-
-const UIWindowLevel UIWindowLevelMLActionSheet = 1999.0;
 
 #pragma mark - MLActionSheet interface
 @interface MLActionSheet()
@@ -105,6 +104,8 @@ const UIWindowLevel UIWindowLevelMLActionSheet = 1999.0;
     
     self = [self init];
     if (self) {
+        _commonTextColor = kCommonTextColor;
+        
         self.title = title;
         self.delegate = delegate;
         
@@ -135,7 +136,7 @@ const UIWindowLevel UIWindowLevelMLActionSheet = 1999.0;
             [self.buttons addObject:button];
             self.cancelButtonIndex = [self.buttons indexOfObject:button];
             
-            button.tag = self.cancelButtonIndex+100;
+            button.tag = self.cancelButtonIndex+kButtonTagOffset;
             [button addTarget:self action:@selector(buttonEvent:) forControlEvents:UIControlEventTouchUpInside];
         }
     }
@@ -150,19 +151,21 @@ const UIWindowLevel UIWindowLevelMLActionSheet = 1999.0;
     }
     
     //自己建立的window,很高的level
-    MLActionSheetViewController *viewController = [[MLActionSheetViewController alloc] init];
-    viewController.actionSheet = self;
     if (!self.actionWindow) {
+        MLActionSheetViewController *viewController = [[MLActionSheetViewController alloc] init];
+        viewController.actionSheet = self;
+        
         UIWindow *window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
         window.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         window.opaque = NO;
-        window.windowLevel = UIWindowLevelMLActionSheet;
+        window.windowLevel = UIWindowLevelAlert-10.0;
         window.rootViewController = viewController;
         self.actionWindow = window;
     }
     [self.actionWindow makeKeyAndVisible];
     
     //强制刷新
+    [self setNeedsLayout];
     [self layoutIfNeeded];
     
     self.isVisible = YES;
@@ -218,19 +221,21 @@ const UIWindowLevel UIWindowLevelMLActionSheet = 1999.0;
                              self.isVisible = NO;
                              
                              [self.actionWindow removeFromSuperview];
+                             [self.actionWindow resignKeyWindow];
                              self.actionWindow = nil;
                          }];
         return;
     }
     
-    [self removeFromSuperview];
+    [self.actionWindow removeFromSuperview];
+    [self.actionWindow resignKeyWindow];
     self.actionWindow = nil;
 }
 
 - (void)buttonEvent:(id)sender
 {
     UIButton *button = (UIButton*)sender;
-    NSInteger buttonIndex = button.tag - 100;
+    NSInteger buttonIndex = [self.buttons indexOfObject:button];
     if (self.delegate&&[self.delegate respondsToSelector:@selector(actionSheet:clickedButtonAtIndex:)]) {
         [self.delegate actionSheet:self clickedButtonAtIndex:buttonIndex];
         
@@ -332,13 +337,24 @@ const UIWindowLevel UIWindowLevelMLActionSheet = 1999.0;
     }
     UIButton *button = [self getButtonWithStyleMask:styleMask];
     [button setTitle:title forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(buttonEvent:) forControlEvents:UIControlEventTouchUpInside];
     [self.containerView addSubview:button];
     
     [self.buttons addObject:button];
+    //是否有取消按钮，有的话，两者换位置
+    if (self.cancelButtonIndex!=-1) {
+        UIButton *cancelButton = self.buttons[self.cancelButtonIndex];
+        [self.buttons replaceObjectAtIndex:self.buttons.count-1 withObject:cancelButton];
+        [self.buttons replaceObjectAtIndex:self.buttons.count-2 withObject:button];
+        
+        //设置取消按钮tag
+        self.cancelButtonIndex = [self.buttons indexOfObject:cancelButton];
+        cancelButton.tag = self.cancelButtonIndex + kButtonTagOffset;
+    }
     
+    //设置tag
     NSInteger buttonIndex = [self.buttons indexOfObject:button];
-    button.tag = buttonIndex+100;
-    [button addTarget:self action:@selector(buttonEvent:) forControlEvents:UIControlEventTouchUpInside];
+    button.tag = buttonIndex + kButtonTagOffset;
     
     [self setNeedsLayout];
     
@@ -384,13 +400,24 @@ const UIWindowLevel UIWindowLevelMLActionSheet = 1999.0;
         //警告按钮红色文本
         [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     }else{
-        [button setTitleColor:kCommonTextColor forState:UIControlStateNormal];
+        [button setTitleColor:self.commonTextColor forState:UIControlStateNormal];
     }
     
     return button;
 }
 
 #pragma mark - setter and getter
+- (void)setCommonTextColor:(UIColor *)commonTextColor
+{
+    for (UIButton *button in self.buttons) {
+        if ([button.titleLabel.textColor isEqual:_commonTextColor]) {
+            [button setTitleColor:commonTextColor forState:UIControlStateNormal];
+        }
+    }
+    
+    _commonTextColor = commonTextColor;
+    
+}
 
 - (void)setTitle:(NSString *)title
 {

@@ -18,6 +18,8 @@ typedef NS_OPTIONS(NSUInteger, MLActionButtonStyleMask) {
 
 @interface MLActionSheet : UIView
 
+@property(nonatomic,strong) UIColor *commonTextColor; //可修改默认text颜色
+
 @property(nonatomic,weak) id<MLActionSheetDelegate> delegate;
 @property(nonatomic,copy) NSString *title;
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		360AF31518FE7548002795DC /* MLActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 360AF31418FE7548002795DC /* MLActionSheet.m */; };
 		36F13DC9183F36D600DE86F8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36F13DC8183F36D600DE86F8 /* Foundation.framework */; };
 		36F13DCB183F36D600DE86F8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36F13DCA183F36D600DE86F8 /* CoreGraphics.framework */; };
 		36F13DCD183F36D600DE86F8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36F13DCC183F36D600DE86F8 /* UIKit.framework */; };
@@ -21,7 +22,6 @@
 		36F13DEA183F36D600DE86F8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36F13DCC183F36D600DE86F8 /* UIKit.framework */; };
 		36F13DF2183F36D600DE86F8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 36F13DF0183F36D600DE86F8 /* InfoPlist.strings */; };
 		36F13DF4183F36D600DE86F8 /* MLActionSheetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F13DF3183F36D600DE86F8 /* MLActionSheetTests.m */; };
-		36F13DFF183F375300DE86F8 /* MLActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F13DFE183F375300DE86F8 /* MLActionSheet.m */; };
 		36F13E01183F543500DE86F8 /* IMG_0126.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 36F13E00183F543500DE86F8 /* IMG_0126.PNG */; };
 		36F13E07183F5DE600DE86F8 /* IMG_0127.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 36F13E06183F5DE600DE86F8 /* IMG_0127.PNG */; };
 /* End PBXBuildFile section */
@@ -37,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		360AF31318FE7548002795DC /* MLActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLActionSheet.h; sourceTree = "<group>"; };
+		360AF31418FE7548002795DC /* MLActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLActionSheet.m; sourceTree = "<group>"; };
 		36F13DC5183F36D600DE86F8 /* MLActionSheet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MLActionSheet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		36F13DC8183F36D600DE86F8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		36F13DCA183F36D600DE86F8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -56,8 +58,6 @@
 		36F13DEF183F36D600DE86F8 /* MLActionSheetTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MLActionSheetTests-Info.plist"; sourceTree = "<group>"; };
 		36F13DF1183F36D600DE86F8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		36F13DF3183F36D600DE86F8 /* MLActionSheetTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MLActionSheetTests.m; sourceTree = "<group>"; };
-		36F13DFD183F375300DE86F8 /* MLActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLActionSheet.h; sourceTree = "<group>"; };
-		36F13DFE183F375300DE86F8 /* MLActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLActionSheet.m; sourceTree = "<group>"; };
 		36F13E00183F543500DE86F8 /* IMG_0126.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IMG_0126.PNG; sourceTree = "<group>"; };
 		36F13E06183F5DE600DE86F8 /* IMG_0127.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IMG_0127.PNG; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -86,6 +86,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		360AF31218FE7548002795DC /* MLActionSheet */ = {
+			isa = PBXGroup;
+			children = (
+				360AF31318FE7548002795DC /* MLActionSheet.h */,
+				360AF31418FE7548002795DC /* MLActionSheet.m */,
+			);
+			path = MLActionSheet;
+			sourceTree = "<group>";
+		};
 		36F13DBC183F36D600DE86F8 = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +130,7 @@
 		36F13DCE183F36D600DE86F8 /* MLActionSheet */ = {
 			isa = PBXGroup;
 			children = (
+				360AF31218FE7548002795DC /* MLActionSheet */,
 				36F13DD7183F36D600DE86F8 /* AppDelegate.h */,
 				36F13DD8183F36D600DE86F8 /* AppDelegate.m */,
 				36F13DDA183F36D600DE86F8 /* Main.storyboard */,
@@ -128,8 +138,6 @@
 				36F13DDE183F36D600DE86F8 /* ViewController.m */,
 				36F13DE0183F36D600DE86F8 /* Images.xcassets */,
 				36F13DCF183F36D600DE86F8 /* Supporting Files */,
-				36F13DFD183F375300DE86F8 /* MLActionSheet.h */,
-				36F13DFE183F375300DE86F8 /* MLActionSheet.m */,
 			);
 			path = MLActionSheet;
 			sourceTree = "<group>";
@@ -264,7 +272,7 @@
 			files = (
 				36F13DDF183F36D600DE86F8 /* ViewController.m in Sources */,
 				36F13DD9183F36D600DE86F8 /* AppDelegate.m in Sources */,
-				36F13DFF183F375300DE86F8 /* MLActionSheet.m in Sources */,
+				360AF31518FE7548002795DC /* MLActionSheet.m in Sources */,
 				36F13DD5183F36D600DE86F8 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -474,6 +482,7 @@
 				36F13DF9183F36D600DE86F8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		36F13DFA183F36D600DE86F8 /* Build configuration list for PBXNativeTarget "MLActionSheetTests" */ = {
 			isa = XCConfigurationList;
@@ -482,6 +491,7 @@
 				36F13DFC183F36D600DE86F8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
